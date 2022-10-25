@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# Exit on any error
-set -e
-
 echo "USERNAME: $USERNAME"
 echo "PASSWORD: $PASSWORD"
 echo "REALM: $REALM"
 echo "PORT RANGE: $MIN_PORT-$MAX_PORT"
 
 internalIp="$(ip a | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
-externalIp="$(dig +short myip.opendns.com @resolver1.opendns.com)"
+externalIp="$(ip a | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
 
 echo "listening-port=3478
 tls-listening-port=5349
